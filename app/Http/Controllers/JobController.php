@@ -15,7 +15,7 @@ class JobController extends Controller
     public function index()
     {
         $data['jobs'] = Job::all();
-        return view('jobs.index',$data);
+        return view('jobs.applied-job',$data);
     }
 
     /**
@@ -23,7 +23,11 @@ class JobController extends Controller
      */
     public function create()
     {
-        return view('jobs.create');
+        return view('jobs.post-job');
+    }
+    public function created()
+    {
+        return view('jobs.created-job');
     }
 
     /**

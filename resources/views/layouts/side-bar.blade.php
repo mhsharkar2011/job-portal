@@ -43,7 +43,7 @@
           </a>
         </li>
         <li>
-          <a href="#" class="relative flex flex-row items-center h-11 focus:outline-none hover:bg-cyan-500 text-gray-600 hover:text-gray-800 border-l-4 border-transparent">
+          <a href="{{ route('jobs.createdJob') }}" class="relative flex flex-row items-center h-11 focus:outline-none hover:bg-cyan-500 text-gray-600 hover:text-gray-800 border-l-4 border-transparent">
             <!-- Icono Users de Font Awesome -->
             <span class="inline-flex justify-center items-center ml-4">
               <i class="fas fa-check-circle"></i>
@@ -52,7 +52,7 @@
           </a>
         </li>
         <li>
-          <a href="#" class="relative flex flex-row items-center h-11 focus:outline-none hover:bg-cyan-500 text-gray-600 hover:text-gray-800 border-l-4 border-transparent">
+          <a href="{{ route('jobs.appliedJob') }}" class="relative flex flex-row items-center h-11 focus:outline-none hover:bg-cyan-500 text-gray-600 hover:text-gray-800 border-l-4 border-transparent">
             <!-- Icono Store de Font Awesome -->
             <span class="inline-flex justify-center items-center ml-4">
               <i class="fa-solid fa-briefcase"></i>

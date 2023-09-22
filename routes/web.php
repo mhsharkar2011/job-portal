@@ -26,7 +26,10 @@ Route::get('/dashboard', function () {
 
 Route::middleware('auth')->group(function () {
     Route::resource('resumes',ResumeController::class);
-    Route::resource('jobs',JobController::class);
+    Route::get('jobs',[JobController::class,'index'])->name('jobs.appliedJob');
+    Route::Post('jobs',[JobController::class,'store'])->name('jobs.postJob');
+    Route::get('jobs/create',[JobController::class,'create'])->name('jobs.create');
+    Route::get('jobs/createdJob',[JobController::class,'created'])->name('jobs.createdJob');
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
