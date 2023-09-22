@@ -12,7 +12,8 @@ class ResumeController extends Controller
      */
     public function index()
     {
-        //
+        $data['resumes']  = Resume::all();
+        return view('resumes.index',$data);
     }
 
     /**
@@ -20,7 +21,7 @@ class ResumeController extends Controller
      */
     public function create()
     {
-        //
+        return view('resumes.create');
     }
 
     /**
