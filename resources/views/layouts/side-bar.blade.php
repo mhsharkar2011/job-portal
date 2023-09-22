@@ -34,7 +34,7 @@
           </a>
         </li>
         <li>
-          <a href="#" class="relative flex flex-row items-center h-11 focus:outline-none hover:bg-cyan-500 text-gray-600 hover:text-gray-800 border-l-4 border-transparent">
+          <a href="{{ route('jobs.create') }}" class="relative flex flex-row items-center h-11 focus:outline-none hover:bg-cyan-500 text-gray-600 hover:text-gray-800 border-l-4 border-transparent">
             <!-- Icono Check Circle de Font Awesome -->
             <span class="inline-flex justify-center items-center ml-4">
               <i class="fa-regular fa-address-card"></i>

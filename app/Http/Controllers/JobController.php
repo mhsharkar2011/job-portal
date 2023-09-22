@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Job;
 use Illuminate\Http\Request;
 
+use function Ramsey\Uuid\v1;
+
 class JobController extends Controller
 {
     /**
@@ -12,7 +14,8 @@ class JobController extends Controller
      */
     public function index()
     {
-        //
+        $data['jobs'] = Job::all();
+        return view('jobs.index',$data);
     }
 
     /**
@@ -20,7 +23,7 @@ class JobController extends Controller
      */
     public function create()
     {
-        //
+        return view('jobs.create');
     }
 
     /**
