@@ -7,17 +7,6 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ResumeController;
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
-
 Route::get('/', function () {
     return view('welcome');
 });
@@ -26,8 +15,6 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-
-// ================================== Backend Public APIs ======================================================
 Route::get('login', [AuthController::class, 'login'])->name('login');
 Route::post('login', [AuthController::class, 'storeLogin'])->name('storeLogin');
 Route::get('register', [AuthController::class, 'register'])->name('register');
@@ -38,7 +25,6 @@ Route::group(['middleware' => ['auth']], function() {
         Route::get('dashboard', [DashboardController::class,'index'])->name('dashboard');
         // Resume APIs
         Route::resource('resumes', ResumeController::class)->except(['index','create','store']);
-        // Route::put('resumes/{resume}', [ResumeController::class,'update'])->name('resume.update');
         // Jobs APIs
         Route::get('jobs', [JobController::class, 'index'])->name('jobs.appliedJob');
         Route::Post('jobs', [JobController::class, 'store'])->name('jobs.postJob');
