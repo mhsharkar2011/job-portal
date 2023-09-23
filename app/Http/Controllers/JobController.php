@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Job;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 use function Ramsey\Uuid\v1;
 
@@ -25,9 +26,12 @@ class JobController extends Controller
     {
         return view('jobs.post-job');
     }
+
+    // Created Job for UI
     public function created()
     {
-        return view('jobs.created-job');
+        $jobs = Job::all();
+        return view('jobs.created-job',compact('jobs'));
     }
 
     /**
@@ -35,7 +39,9 @@ class JobController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        Job::create($request->all());
+        return redirect()->route('jobs.createdJob')->with('success','Job posted successfully');
     }
 
     /**
@@ -59,7 +65,21 @@ class JobController extends Controller
      */
     public function update(Request $request, Job $job)
     {
-        //
+        $input = $request->except('logo');
+        if ($job->logo && $request->hasFile('logo')) {
+            Storage::delete('public/jobs/logo/' . $job->logo);
+            $job->logo = null;
+        }
+
+        if ($request->hasFile('logo')) {
+            $logo = $request->file('logo');
+            $filename = $job->id . '-' . $job->job_title . '-' . date('Ymd') . '.' . $logo->getClientOriginalExtension();
+            $logo->storeAs('public/jobs/logos', $filename);
+            $job->logo = $filename;
+            $job->save();
+        }
+        $job->update($input);
+        return redirect()->route('jobs.createdJob')->with('success', 'Job Updated Successfully');
     }
 
     /**
@@ -67,6 +87,8 @@ class JobController extends Controller
      */
     public function destroy(Job $job)
     {
-        //
+        $job->delete();
+
+        return redirect()->route('jobs.appliedJob')->with('success','Job Deleted Successfully');
     }
 }

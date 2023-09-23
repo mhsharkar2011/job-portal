@@ -44,6 +44,8 @@ Route::group(['middleware' => ['auth']], function() {
         Route::Post('jobs', [JobController::class, 'store'])->name('jobs.postJob');
         Route::get('jobs/create', [JobController::class, 'create'])->name('jobs.create');
         Route::get('jobs/createdJob', [JobController::class, 'created'])->name('jobs.createdJob');
+        Route::put('jobs', [JobController::class, 'update'])->name('jobs.update');
+        Route::delete('jobs/{job}', [JobController::class, 'destroy'])->name('jobs.destroy');
         // User APIs
         Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
         Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
