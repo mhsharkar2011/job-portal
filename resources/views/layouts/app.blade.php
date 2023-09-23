@@ -19,6 +19,7 @@
 
 <body class="font-sans antialiased">
 
+    @include('layouts.navigation')
     @if (Request::is('*'))
         @include('layouts.side-bar')
     @endif

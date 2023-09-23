@@ -19,6 +19,7 @@
 
 <body class="font-sans antialiased">
 
+    <?php echo $__env->make('layouts.navigation', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
     <?php if(Request::is('*')): ?>
         <?php echo $__env->make('layouts.side-bar', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
     <?php endif; ?>
