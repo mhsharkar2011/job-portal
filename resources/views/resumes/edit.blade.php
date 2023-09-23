@@ -3,9 +3,14 @@
         <div class="max-w-4xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
+                     <div class="grid gap-6 mb-6 md:grid-cols-2">
                     <div>
                         <h3 class="text-3xl font-bold dark:text-gray-500 mb-6">Profesional Information</h3>
                     </div>
+                    <div>
+                        <x-avatar :user="$resume->avatar" class="rounded w-36 h-36 float-right" alt="Avatar"/>
+                    </div>
+                     </div>
                     <form action="{{ route('resumes.update', $resume->id) }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
