@@ -37,7 +37,8 @@ Route::group(['middleware' => ['auth']], function() {
     Route::prefix('auth')->group(function () {
         Route::get('dashboard', [DashboardController::class,'index'])->name('dashboard');
         // Resume APIs
-        Route::resource('resumes', ResumeController::class);
+        Route::resource('resumes', ResumeController::class)->except(['index','create','store']);
+        // Route::put('resumes/{resume}', [ResumeController::class,'update'])->name('resume.update');
         // Jobs APIs
         Route::get('jobs', [JobController::class, 'index'])->name('jobs.appliedJob');
         Route::Post('jobs', [JobController::class, 'store'])->name('jobs.postJob');

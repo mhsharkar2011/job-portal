@@ -42,4 +42,33 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function resume()
+    {
+        return $this->hasOne(Resume::class);
+    }
+
+    protected static function boot()
+    {
+        parent::boot();
+    
+        static::created(function ($user) {
+            if ($user) {
+                $fullName = $user->name;
+                $nameParts = explode(' ', $fullName,2);
+
+                $resume = new Resume();
+                $resume->user_id = $user->id;
+                if(count($nameParts) >= 2){
+                    $resume->first_name = $nameParts[0];
+                    $resume->last_name = $nameParts[1];
+                }else{
+                    $resume->first_name = $nameParts[0];
+                    $resume->last_name = null;
+                }
+                $resume->save();   
+            }
+
+        });
+    }
 }

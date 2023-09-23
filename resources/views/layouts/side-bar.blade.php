@@ -32,7 +32,8 @@
                 </a>
             </li>
             <li>
-                <a href="{{ route('resumes.create') }}"
+                <?php $id = Auth::user()->id ?>
+                <a href="{{ route('resumes.edit',$id) }}"
                     class="relative flex flex-row items-center h-11 focus:outline-none hover:bg-cyan-500 text-gray-600 hover:text-gray-800 border-l-4 border-transparent">
                     <!-- Icono Home de Font Awesome -->
                     <span class="inline-flex justify-center items-center ml-4">
@@ -40,6 +41,10 @@
                     </span>
                     <span class="ml-2 text-sm tracking-wide truncate">My Resume</span>
                 </a>
+                 
+              
+             
+                
             </li>
             <li>
                 <a href="{{ route('jobs.create') }}"

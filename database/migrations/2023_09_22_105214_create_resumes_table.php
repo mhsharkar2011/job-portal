@@ -13,18 +13,21 @@ return new class extends Migration
     {
         Schema::create('resumes', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('country_id');
-            $table->string('first_name');
-            $table->string('last_name');
-            $table->string('avatar');
-            $table->string('profession');
-            $table->string('language');
-            $table->string('address');
-            $table->string('phone_no');
-            $table->string('email');
+            $table->unsignedBigInteger('user_id');
+            $table->string('first_name')->nullable();
+            $table->string('last_name')->nullable();
+            $table->string('avatar')->nullable();
+            $table->string('profession')->nullable();
+            $table->string('language')->nullable();
+            $table->string('country')->nullable();
+            $table->string('state')->nullable();
+            $table->string('city')->nullable();
+            $table->string('address')->nullable();
+            $table->string('phone_no')->nullable();
+            $table->string('email')->nullable();
             $table->timestamps();
             $table->softDeletes();
-            $table->foreign('country_id')->references('id')->on('users')->cascadeOnUpdate()->cascadeOnDelete();
+            $table->foreign('user_id')->references('id')->on('users')->cascadeOnUpdate()->cascadeOnDelete();
         });
     }
 
