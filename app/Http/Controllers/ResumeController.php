@@ -13,12 +13,12 @@ use Illuminate\Support\Facades\Validator;
 class ResumeController extends Controller
 {
 
-    public function edit(Resume $resume)
+    public function edit(Resume $resume , Request $request)
     {
-        $countries = Country::select('name')->get();
-        $states = State::select('name')->get();
+        $countries = Country::all();
         $cities = City::select('name')->get();
-        return view('resumes.edit',compact('resume','countries','states','cities'));
+        $states = State::all();
+        return view('resumes.edit',compact('resume','countries','cities','states'));
     }
 
     /**
@@ -50,5 +50,12 @@ class ResumeController extends Controller
     public function destroy(Resume $resume)
     {
         //
+    }
+
+    public function getStates()
+    {
+        $country_id = request('country');
+        $states = State::where('country_id',$country_id)->get();
+        return view('resumes.edit',compact('states'));
     }
 }

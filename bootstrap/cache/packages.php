@@ -59,4 +59,11 @@
       'Flare' => 'Spatie\\LaravelIgnition\\Facades\\Flare',
     ),
   ),
+  'wisdom-diala/countrypkg-laravel' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'WisdomDiala\\Countrypkg\\CountrypkgServiceProvider',
+    ),
+  ),
 );
