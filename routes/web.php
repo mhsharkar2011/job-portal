@@ -5,10 +5,12 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\JobController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ResumeController;
+use App\Models\Job;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('welcome');
+    $data['jobs'] = Job::all();
+    return view('welcome',$data);
 });
 
 Route::get('/dashboard', function () {
@@ -25,6 +27,7 @@ Route::group(['middleware' => ['auth']], function() {
         Route::get('dashboard', [DashboardController::class,'index'])->name('dashboard');
         // Resume APIs
         Route::resource('resumes', ResumeController::class)->except(['index','create','store']);
+        Route::get('get_states/{state}/edit',[ResumeController::class,'getStates']);
         // Jobs APIs
         Route::get('jobs', [JobController::class, 'index'])->name('jobs.appliedJob');
         Route::Post('jobs', [JobController::class, 'store'])->name('jobs.postJob');

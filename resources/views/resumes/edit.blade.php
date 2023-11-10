@@ -41,8 +41,8 @@
                         <div class="grid gap-6 mb-6 md:grid-cols-3">
                             <div>
                                 <label for="country" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">Country <span class="text-red-500">*</span></label>
-                                <select id="countries" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
-                                    <option selected>Choose a country</option>
+                                <select name="country" id="country" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                                    <option selected>{{ $resume->country }}</option>
                                     @foreach ($countries as $country )
                                     <option value="{{ $country->id }}">{{ $country->name }}</option>
                                     @endforeach
@@ -50,21 +50,22 @@
                             </div>
                             <div>
                                 <label for="state" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">State <span class="text-red-500">*</span></label>
-                                <select id="countries" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
-                                    <option selected>Choose a State</option>
+                                <select name="state" id="state" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                                    <option selected> --- </option>
                                     @foreach ($states as $state )
-                                    <option value="{{ $state->name }}">{{ $state->name }}</option>
+                                    <option value="{{ $state->id }}">{{ $state->name }}</option>
                                     @endforeach
-                                  </select>
+                                </select>
                             </div>
                             <div>
                                 <label for="city" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">City <span class="text-red-500">*</span></label>
-                                <select id="countries" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                                <input type="text" name="city" id="city" class="bg-white-500 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5  dark:placeholder-gray-400 dark:text-gray-500" value="{{$resume->city}}" @if($resume->city == null) placeholder = "No Record Found" @endif required>
+                                {{-- <select id="countries" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
                                     <option selected>Choose a City</option>
                                     @foreach ($cities as $city )
                                     <option value="{{ $city->name }}">{{ $city->name }}</option>
                                     @endforeach
-                                  </select>
+                                  </select> --}}
                             </div>
                         </div>
 
@@ -82,7 +83,7 @@
                                 <input type="text" name="email" id="email" class="bg-white-500 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5  dark:placeholder-gray-400 dark:text-gray-500" value="{{$resume->email}}" @if($resume->email == null) placeholder = "No Record Found" @endif required>
                             </div>
                         </div>
-                        <button type="submit" class="text-white bg-red-500 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-orange-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 float-right">Submit</button>
+                        <button id="submit" type="submit" class="text-white bg-red-500 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-orange-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 float-right">Submit</button>
                     </form>
 
                 </div>
@@ -90,3 +91,14 @@
         </div>
     </div>
 </x-app-layout>
+
+<script>
+    $(document).ready(function(){
+        $("#country").change(function(){
+            let country_id = this.value;
+            $.get('/get_states?country='+country_id, function(data){
+                console.log(data);
+            })
+        })
+    })
+</script>

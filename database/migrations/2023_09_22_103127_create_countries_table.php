@@ -11,14 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('countries', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
-            $table->string('short_name')->nullable();
-            $table->string('flag_img')->nullable();
-            $table->string('country_code')->nullable();
-            $table->timestamps();
-        });
+        // Schema::create('countries', function (Blueprint $table) {
+        //     $table->id();
+        //     $table->string('name');
+        //     $table->string('short_name')->nullable();
+        //     $table->string('flag_img')->nullable();
+        //     $table->string('country_code')->nullable();
+        //     $table->timestamps();
+        // });
     }
 
     /**

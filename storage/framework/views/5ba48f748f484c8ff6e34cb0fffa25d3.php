@@ -9,13 +9,27 @@
 <?php $component->withAttributes([]); ?>
     <div class="py-12">
         <div class="max-w-4xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900">
-                    <h1 class="mb-4 text-3xl font-extrabold text-gray-900 dark:text-gray-500 md:text-5xl lg:text-6xl">
-                        <span class="text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-400">Welcome</span> 
-                        To</h1>
-                    <h1 class="text-3xl font-bold text-gray-500 text-center dark:text-gray-400">Job Portal</h1>
-
+            <div class=" overflow-hidden shadow-sm sm:rounded-lg">
+                <div class="p-6 text-slate-950">
+                    <div class="content container-fluid">
+                    <div class="d-flex">
+                        <?php if (isset($component)) { $__componentOriginal71c6471fa76ce19017edc287b6f4508c = $component; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.card','data' => ['count' => ''.e($totalResumes ?? '0').'','label' => 'Total Resumes','icon' => 'fa-solid fa-truck-plane']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? (array) $attributes->getIterator() : [])); ?>
+<?php $component->withName('card'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag && $constructor = (new ReflectionClass(Illuminate\View\AnonymousComponent::class))->getConstructor()): ?>
+<?php $attributes = $attributes->except(collect($constructor->getParameters())->map->getName()->all()); ?>
+<?php endif; ?>
+<?php $component->withAttributes(['count' => ''.e($totalResumes ?? '0').'','label' => 'Total Resumes','icon' => 'fa-solid fa-truck-plane']); ?>
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginal71c6471fa76ce19017edc287b6f4508c)): ?>
+<?php $component = $__componentOriginal71c6471fa76ce19017edc287b6f4508c; ?>
+<?php unset($__componentOriginal71c6471fa76ce19017edc287b6f4508c); ?>
+<?php endif; ?>
+                    </div>
+                    </div>
                 </div>
             </div>
         </div>
